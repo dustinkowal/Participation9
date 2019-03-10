@@ -122,18 +122,22 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //add method
     public void add() {
         Snackbar.make(findViewById(android.R.id.content), "Add a Study Mate not implemented", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+    //delete method
     public void delete() {
         Snackbar.make(findViewById(android.R.id.content), "Deleting a Study Mate not implemented", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+    //setting method
     public void settings() {
         Intent settingIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingIntent);
     }
+    //email method
     public void email() {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("*/*");
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(emailIntent);
         }
     }
+    //sms method
     public void sms() {
         Uri uri = Uri.parse("smsto:6129659104");
         Intent smsIntent = new Intent(Intent.ACTION_SEND);
