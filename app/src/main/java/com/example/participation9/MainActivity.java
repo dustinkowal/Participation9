@@ -76,40 +76,23 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settingIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingIntent);
+            settings();
             return true;
         }
         if (id == R.id.action_email) {
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.setType("*/*");
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study M8");
-            if (emailIntent.resolveActivity(getPackageManager()) != null){
-                startActivity(emailIntent);
-            }
+            email();
             return true;
         }
         if (id == R.id.action_add) {
-            Snackbar.make(findViewById(android.R.id.content), "Add a Study Mate not implemented", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            add();
             return true;
         }
         if (id == R.id.action_delete) {
-            Snackbar.make(findViewById(android.R.id.content), "Deleting a Study Mate not implemented", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            delete();
             return true;
         }
         if (id == R.id.action_sms) {
-            Uri uri = Uri.parse("smsto:6129659104");
-            Intent smsIntent = new Intent(Intent.ACTION_SEND);
-            smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
-            smsIntent.putExtra("sms_body", "I can't study today");
-            //smsIntent.putExtra(Intent.EXTRA_STREAM, attachment);
-            //smsIntent.setType("HTTP.PLAIN_TEXT_TYPE");
-            //smsIntent.putExtra("sms_body", "I can't study today");
-            if (smsIntent.resolveActivity(getPackageManager()) != null){
-                startActivity(smsIntent);
-            }
+            sms();
             return true;
         }
 
@@ -122,22 +105,50 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.action_add) {
+            add();
+        } else if (id == R.id.action_delete) {
+            delete();
+        } else if (id == R.id.action_email) {
+            email();
+        } else if (id == R.id.action_settings) {
+            settings();
+        } else if (id == R.id.action_sms) {
+            sms();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void add() {
+        Snackbar.make(findViewById(android.R.id.content), "Add a Study Mate not implemented", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+    public void delete() {
+        Snackbar.make(findViewById(android.R.id.content), "Deleting a Study Mate not implemented", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+    public void settings() {
+        Intent settingIntent = new Intent(this, SettingsActivity.class);
+        startActivity(settingIntent);
+    }
+    public void email() {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("*/*");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study M8");
+        if (emailIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(emailIntent);
+        }
+    }
+    public void sms() {
+        Uri uri = Uri.parse("smsto:6129659104");
+        Intent smsIntent = new Intent(Intent.ACTION_SEND);
+        smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+        smsIntent.putExtra("sms_body", "I can't study today");
+        if (smsIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(smsIntent);
+        }
     }
 }
